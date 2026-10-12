@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Digital Product Business Mastery | 3-Day Live Training</title>
+    
+    <!-- Google Fonts: Inter & Noto Sans Devanagari for crisp cross-platform typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '375px',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FBFBFA',
+                            card: '#FFFFFF',
+                            cardHover: '#F7F8F7',
+                            border: '#E5E7EB',
+                            borderLight: '#D1D5DB',
+                            accent: '#064E3B',
+                            accentLight: '#047857',
+                            cta: '#064E3B',
+                            ctaHover: '#033b2c',
+                            highlight: '#10B981',
+                            textMuted: '#6B7280',
+                            textLight: '#111827',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FBFBFA;
+            color: #111827;
+            font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            letter-spacing: -0.012em;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Editorial-inspired text styling */
+        .text-gradient-main {
+            color: #111827;
+        }
+
+        .text-gradient-accent {
+            background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism navigation and paper cards */
+        .glass-nav {
+            background: rgba(251, 251, 250, 0.92);
+            backdrop-filter: saturate(180%) blur(16px);
+            -webkit-backdrop-filter: saturate(180%) blur(16px);
+        }
+
+        .glass-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        @media (hover: hover) {
+            .glass-card:hover {
+                border-color: rgba(6, 78, 59, 0.25);
+                box-shadow: 0 10px 25px -4px rgba(6, 78, 59, 0.08);
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Subtle responsive ambient lighting effects */
+        .ambient-glow {
+            position: absolute;
+            width: min(500px, 90vw);
+            height: min(500px, 90vw);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, rgba(251, 251, 250, 0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Accordion transition logic */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.32s cubic-bezier(0, 1, 0, 1), opacity 0.25s ease;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            max-height: 380px;
+            opacity: 1;
+            transition: max-height 0.35s ease-in-out, opacity 0.3s ease;
+        }
+
+        /* Mobile safe-area padding */
+        .safe-bottom-padding {
+            padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+        }
+
+        .safe-bottom-sticky {
+            padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-100 selection:text-emerald-950 relative antialiased safe-bottom-padding md:pb-0">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="ambient-glow top-0 left-1/2 -translate-x-1/2 opacity-90"></div>
+        <div class="ambient-glow top-[900px] -right-20 opacity-60"></div>
+        <div class="ambient-glow top-[2000px] -left-20 opacity-50"></div>
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-gray-200/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between text-xs font-medium">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-2 text-gray-900 font-semibold tracking-tight active:scale-95 transition-transform">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
+                <span class="text-sm tracking-tight font-bold text-gray-900">DPB MASTERY</span>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-gray-600 font-medium">
+                <a href="#problems" class="hover:text-emerald-800 transition">Problems</a>
+                <a href="#skills" class="hover:text-emerald-800 transition">4 Skills</a>
+                <a href="#roadmap" class="hover:text-emerald-800 transition">Roadmap</a>
+                <a href="#who-is-this-for" class="hover:text-emerald-800 transition">Who It's For</a>
+                <a href="#refund-policy" class="hover:text-emerald-800 transition">Refund Policy</a>
+                <a href="#faq" class="hover:text-emerald-800 transition">FAQs</a>
+            </nav>
+
+            <!-- Desktop & Tablet Header CTA Button -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#register" class="bg-emerald-900 text-white font-semibold px-4 py-2 rounded-full hover:bg-emerald-950 active:scale-95 transition text-xs flex items-center gap-1 shadow-sm">
+                    <span>Reserve Seat</span>
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="mobileMenuBtn" type="button" aria-label="Toggle Navigation Menu" class="md:hidden p-2 text-gray-700 hover:text-black focus:outline-none rounded-lg active:bg-gray-100" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" id="menuIcon" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileDrawer" class="hidden md:hidden glass-nav border-b border-gray-200 px-5 py-4 space-y-3 bg-white/95">
+            <a href="#problems" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">Problems</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">4 Core Skills</a>
+            <a href="#roadmap" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">3-Day Roadmap</a>
+            <a href="#who-is-this-for" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">Who It's For</a>
+            <a href="#refund-policy" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">Refund Policy</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm text-gray-700 hover:text-emerald-800 border-b border-gray-100">FAQs</a>
+            <a href="#register" onclick="toggleMobileMenu()" class="block w-full text-center bg-emerald-900 text-white font-semibold py-2.5 rounded-xl text-sm mt-3 shadow-sm">Reserve Seat (₹4,999)</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-20 sm:pt-28">
+
+        <section class="min-h-[75vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-4xl mx-auto pt-4 pb-14 sm:pb-20">
+            <!-- Program Badge -->
+            <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] sm:text-xs font-medium text-emerald-900 mb-5 sm:mb-6">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span class="tracking-wide uppercase font-semibold">DIGITAL PRODUCT BUSINESS MASTERY</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.2] sm:leading-[1.15] mb-4 sm:mb-5">
+                अपना Digital Product Business शुरू करना सीखें
+                <span class="block text-gradient-accent mt-1.5 sm:mt-2">Zero से Step-by-Step</span>
+            </h1>
+
+            <!-- Supporting Text -->
+            <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 sm:mb-8 font-normal px-2">
+                एक 3-Day Live Training में सीखें Digital Product Selling, Affiliate Marketing, Lead Generation और Sales की skills और समझें कि इन्हें एक practical business process में कैसे use किया जाता है।
+            </p>
+
+            <!-- Four Compact Mobile Highlights -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-3xl mb-7 sm:mb-9 text-xs sm:text-sm">
+                <div class="px-3 py-2.5 sm:py-3 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center gap-2 text-gray-800">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span class="font-medium truncate">Digital Products</span>
+                </div>
+                <div class="px-3 py-2.5 sm:py-3 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center gap-2 text-gray-800">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span class="font-medium truncate">Affiliate Marketing</span>
+                </div>
+                <div class="px-3 py-2.5 sm:py-3 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center gap-2 text-gray-800">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span class="font-medium truncate">Lead Generation</span>
+                </div>
+                <div class="px-3 py-2.5 sm:py-3 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center gap-2 text-gray-800">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span class="font-medium truncate">Sales & Closing</span>
+                </div>
+            </div>
+
+            <!-- Primary CTA + Pricing -->
+            <div class="flex flex-col items-center gap-3 w-full max-w-md">
+                <a href="#register" class="w-full bg-emerald-900 text-white font-bold px-7 py-3.5 sm:py-4 rounded-full text-base hover:bg-emerald-950 active:scale-[0.98] transition shadow-lg shadow-emerald-900/15 flex items-center justify-center gap-2 group cursor-pointer">
+                    <span>JOIN THE LIVE TRAINING</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                
+                <div class="flex flex-wrap items-center justify-center gap-2 text-xs text-gray-500 mt-1">
+                    <span>Training Fee: <strong class="text-gray-900 font-semibold text-sm">₹4,999</strong></span>
+                    <span class="text-gray-300 hidden xs:inline">•</span>
+                    <span class="block xs:inline text-gray-600">Schedule: <span class="text-emerald-800 font-medium">Regular Batches (Next Batch Joining on Register)</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="problems" class="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto border-t border-gray-200">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">COMMON CHALLENGES</h2>
+                <h3 class="text-xl xs:text-2xl sm:text-4xl font-bold tracking-tight text-gray-900">
+                    Product का Idea है, लेकिन उसे Business में कैसे बदलें?
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-5 sm:p-7 rounded-2xl flex flex-col justify-start">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 flex items-center justify-center mb-4 shrink-0">
+                        <i data-lucide="package-search" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">1. क्या Sell करें?</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Understand how to identify an audience, choose a relevant product idea, and develop a clear offer.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-5 sm:p-7 rounded-2xl flex flex-col justify-start">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 flex items-center justify-center mb-4 shrink-0">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">2. Customers तक कैसे पहुँचें?</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Understand the basics of reaching a relevant audience through content, promotion, and lead generation.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-5 sm:p-7 rounded-2xl flex flex-col justify-start">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 flex items-center justify-center mb-4 shrink-0">
+                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">3. Sales कैसे करें?</h4>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Learn how to understand customer needs, communicate offer value, and structure sales conversations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Closing Callout -->
+            <div class="text-center p-4 rounded-xl bg-white border border-gray-200 max-w-2xl mx-auto shadow-sm">
+                <p class="text-xs sm:text-sm text-gray-700 font-medium leading-relaxed">
+                    "अगर आप भी इन सवालों के जवाब खोज रहे हैं, तो यह Training आपको एक <span class="text-emerald-800 font-semibold">Structured Starting Point</span> देगी।"
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="py-14 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-gray-200">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">CORE CURRICULUM</h2>
+                <h3 class="text-xl xs:text-2xl sm:text-4xl font-bold tracking-tight text-gray-900">
+                    चार Skills, एक Structured Learning Journey
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                <!-- Skill 1 -->
+                <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 font-semibold">Skill 01</span>
+                            <i data-lucide="package" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Digital Product Selling</h4>
+                        <p class="text-xs font-mono text-emerald-700 font-medium mb-4">Idea → Product → Offer</p>
+
+                        <ul class="space-y-2 text-xs text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Audience और Problem Identification</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Product Idea Selection</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Product Value और Positioning</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Clear Offer Creation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 font-semibold">Skill 02</span>
+                            <i data-lucide="share-2" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Affiliate Marketing</h4>
+                        <p class="text-xs font-mono text-emerald-700 font-medium mb-4">Product → Promotion → Commission</p>
+
+                        <ul class="space-y-2 text-xs text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Affiliate Marketing Model</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Product और Audience Relevance</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Content & Promotion Basics</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Affiliate Tracking और Commission Terms</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 font-semibold">Skill 03</span>
+                            <i data-lucide="user-plus" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Lead Generation</h4>
+                        <p class="text-xs font-mono text-emerald-700 font-medium mb-4">Traffic → Attention → Leads</p>
+
+                        <ul class="space-y-2 text-xs text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Organic Reach & Content Basics</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Right Audience Identify करना</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Hooks & Call-to-Actions (CTAs)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Interested Leads Capture करना</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 font-semibold">Skill 04</span>
+                            <i data-lucide="target" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">Sales Mastery</h4>
+                        <p class="text-xs font-mono text-emerald-700 font-medium mb-4">Lead → Conversation → Sales</p>
+
+                        <ul class="space-y-2 text-xs text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Customer Needs समझना</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Discovery Questions पूछना</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Value Communication</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5"></i>
+                                <span>Objection Handling & Closing</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto border-t border-gray-200">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">3-DAY ROADMAP</h2>
+                <h3 class="text-xl xs:text-2xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-3 sm:mb-4">
+                    तीन दिनों में क्या सीखेंगे?
+                </h3>
+                
+                <!-- Sequence Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-gray-200 text-[11px] sm:text-xs font-mono font-medium text-gray-700 shadow-sm">
+                    <span class="text-gray-900 font-bold">BUILD</span>
+                    <span class="text-emerald-700 font-bold">→</span>
+                    <span class="text-gray-900 font-bold">PROMOTE</span>
+                    <span class="text-emerald-700 font-bold">→</span>
+                    <span class="text-gray-900 font-bold">SELL</span>
+                </div>
+            </div>
+
+            <!-- Responsive 3-Day Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 relative">
+                <!-- Day 1 -->
+                <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-700 md:hidden"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-emerald-800 tracking-wider">DAY 1</span>
+                            <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-mono font-semibold">BUILD</span>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-3">Digital Product Selling</h4>
+                        
+                        <div class="space-y-1.5 text-xs text-gray-600 mb-5">
+                            <p>• Problem और Audience Identification</p>
+                            <p>• Product Idea</p>
+                            <p>• Product Positioning</p>
+                            <p>• Offer Creation</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3.5 border-t border-gray-100 text-xs">
+                        <span class="text-gray-400 block mb-0.5 font-medium">Goal:</span>
+                        <p class="text-gray-800 font-medium">"अपने शुरुआती Digital Product और Offer का Plan तैयार करना।"</p>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-700 md:hidden"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-emerald-800 tracking-wider">DAY 2</span>
+                            <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-mono font-semibold">PROMOTE</span>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-3">Affiliate & Lead Gen</h4>
+                        
+                        <div class="space-y-1.5 text-xs text-gray-600 mb-5">
+                            <p>• Affiliate Marketing Model</p>
+                            <p>• Audience Research</p>
+                            <p>• Content & Promotion</p>
+                            <p>• Lead Generation Basics</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3.5 border-t border-gray-100 text-xs">
+                        <span class="text-gray-400 block mb-0.5 font-medium">Goal:</span>
+                        <p class="text-gray-800 font-medium">"Promotion और Leads तक पहुँचने का शुरुआती Plan तैयार करना।"</p>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-700 md:hidden"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-emerald-800 tracking-wider">DAY 3</span>
+                            <span class="text-[11px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-mono font-semibold">SELL</span>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-3">Sales & Closing</h4>
+                        
+                        <div class="space-y-1.5 text-xs text-gray-600 mb-5">
+                            <p>• Sales Conversation</p>
+                            <p>• Discovery Questions</p>
+                            <p>• Value Communication</p>
+                            <p>• Objection Handling</p>
+                            <p>• Follow-up Strategy</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3.5 border-t border-gray-100 text-xs">
+                        <span class="text-gray-400 block mb-0.5 font-medium">Goal:</span>
+                        <p class="text-gray-800 font-medium">"Sales Conversation और Follow-up का Framework समझना।"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="who-is-this-for" class="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto border-t border-gray-200">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <h2 class="text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">TARGET AUDIENCE</h2>
+                <h3 class="text-xl xs:text-2xl sm:text-4xl font-bold tracking-tight text-gray-900">
+                    यह Training आपके लिए है अगर…
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                <!-- 1. Students -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-start gap-4">
+                    <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 shrink-0">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Students</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+                            आप Digital Skills सीखकर Online Business की opportunities को explore करना चाहते हैं।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Job Holders -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-start gap-4">
+                    <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 shrink-0">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Job Holders</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+                            आप अपनी Job के साथ Online Business Models को Explore करना चाहते हैं।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Complete Beginners -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-start gap-4">
+                    <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 shrink-0">
+                        <i data-lucide="sprout" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Complete Beginners</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+                            आप scratch से समझना चाहते हैं कि Product, Promotion और Sales कैसे काम करते हैं।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Aspiring Entrepreneurs -->
+                <div class="p-5 sm:p-6 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-start gap-4">
+                    <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 shrink-0">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Aspiring Entrepreneurs</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+                            आप Digital Product या Affiliate Business की दिशा में काम करना चाहते हैं।
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="refund-policy" class="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto border-t border-gray-200">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-medium text-emerald-900 mb-2.5">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-700"></i>
+                    <span>ACTION-BASED GUARANTEE</span>
+                </div>
+                <h3 class="text-xl xs:text-2xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-2 sm:mb-3">
+                    हमारी 100% Action-Based Refund Policy
+                </h3>
+                <p class="text-gray-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+                    हम सिर्फ सिखाने में नहीं, बल्कि practical execution में believe करते हैं। अगर आप हमारा framework step-by-step सही से apply करते हैं और फिर भी result नहीं मिलता, तब आप Refund claim कर सकते हैं।
+                </p>
+            </div>
+
+            <!-- Policy Framework Box -->
+            <div class="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-9 border border-gray-200 relative mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+                    <div>
+                        <h4 class="text-base sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-700 shrink-0"></span>
+                            <span>Refund की Main Condition क्या है?</span>
+                        </h4>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Training में सिखाया गया framework (Product, Promotion & Sales Process) आपको complete follow और apply करना होगा। बिना action लिए या बिना काम किए सिर्फ training attend करने पर कोई refund नहीं मिलेगा।
+                        </p>
+                        <div class="p-3.5 sm:p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs text-gray-700 space-y-1.5">
+                            <div class="flex items-center gap-2 text-emerald-900 font-semibold">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-700 shrink-0"></i>
+                                <span>2 Attempts (Review System)</span>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                जब आप Refund claim करेंगे, तो हमारी team आपका work और implementation check करेगी। अपना work prove करने के लिए आपके पास maximum <strong>2 Review Attempts</strong> होंगे।
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Attempts Breakdown -->
+                    <div class="space-y-3 sm:space-y-4">
+                        <!-- Attempt 1 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-200">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-emerald-950">ATTEMPT 1 : FIRST WORK REVIEW</span>
+                                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium border border-emerald-200">Audit Stage</span>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                हम आपका work check करेंगे। अगर process follow न करने की वजह से आपकी तरफ से कोई mistake निकलती है, तो refund reject हो जाएगा और हमारी team आपको guide करेगी ताकि आप अपनी mistake सुधार सकें।
+                            </p>
+                        </div>
+
+                        <!-- Attempt 2 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-200">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-emerald-950">ATTEMPT 2 : FINAL REVIEW</span>
+                                <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-medium border border-amber-200">Final Verification</span>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Guidance के बाद आपके काम को दोबारा review किया जाएगा। अगर second time भी process follow न करने की गलती आपकी साइड से निकलती है, तो आप Refund Policy के लिए eligible नहीं रहेंगे।
+                            </p>
+                        </div>
+
+                        <!-- Full Refund condition -->
+                        <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-50 border border-emerald-200">
+                            <div class="flex items-center gap-2 text-xs font-bold text-emerald-900 mb-1">
+                                <i data-lucide="badge-check" class="w-4 h-4 text-emerald-700 shrink-0"></i>
+                                <span>अगर fault हमारे framework में हुआ?</span>
+                            </div>
+                            <p class="text-xs text-emerald-800 leading-relaxed">
+                                अगर आपने बताई गई हर strategy 100% सही तरीके से execute की है और problem हमारे framework या training system में निकलती है, तो हम आपको तुरंत <strong>100% Full Refund</strong> transfer कर देंगे।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transparency footnote -->
+            <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-gray-200 text-center max-w-3xl mx-auto shadow-sm">
+                <p class="text-[11px] sm:text-xs text-gray-600 leading-relaxed">
+                    💡 <strong class="text-gray-900">Fair & Transparent Rule:</strong> यह policy सिर्फ serious action-takers के लिए है जो genuinely काम करना चाहते हैं। बिना implementation के instant results चाहने वालों के लिए कोई refund valid नहीं होगा।
+                </p>
+            </div>
+        </section>
+
+        <section id="register" class="py-14 sm:py-20 px-4 sm:px-6 max-w-3xl mx-auto border-t border-gray-200">
+            <div class="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-9 border border-emerald-200 relative shadow-xl shadow-gray-200/50">
+                <div class="text-center mb-6 sm:mb-8">
+                    <h3 class="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-1.5">Ready to Start Learning?</h3>
+                    <p class="text-xs sm:text-sm text-gray-500">Digital Product Business Mastery • 3-Day Live Interactive Program</p>
+                </div>
+
+                <!-- Responsive Spec Sheet -->
+                <div class="bg-gray-50 rounded-2xl p-4 sm:p-6 border border-gray-200 space-y-3 mb-6 sm:mb-8 text-xs sm:text-sm">
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Program</span>
+                        <span class="text-gray-900 font-medium text-right">Digital Product Business Mastery</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Format</span>
+                        <span class="text-gray-900 font-medium text-right">3-Day Live Online Training</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Topics</span>
+                        <span class="text-gray-900 font-medium text-right">Digital Products + Affiliate + Lead Gen + Sales</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Batch Schedule</span>
+                        <span class="text-emerald-800 font-semibold text-right">Ongoing / Regular Batches</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Session Access</span>
+                        <span class="text-gray-900 font-medium text-right">Registration के तुरंत बाद Next Batch Schedule मिल जाएगा</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Platform</span>
+                        <span class="text-gray-900 font-medium text-right">[GOOGLE MEET / ZOOM]</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-gray-200 gap-2">
+                        <span class="text-gray-500 shrink-0">Guarantee</span>
+                        <span class="text-emerald-800 font-semibold text-right">Action-Based 2-Attempt Policy</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-1">
+                        <span class="text-gray-700 font-semibold text-sm">Fee</span>
+                        <div class="text-right">
+                            <span class="text-2xl sm:text-3xl font-extrabold text-gray-900">₹4,999</span>
+                            <span class="block text-[10px] text-gray-500">All sessions included</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Form (16px base font size prevents iOS auto-zoom on input tap) -->
+                <form id="enrollForm" onsubmit="event.preventDefault(); handleRegistration();" class="space-y-4">
+                    <div>
+                        <label for="fullNameInput" class="block text-xs text-gray-700 mb-1.5 font-medium">आपका पूरा नाम (Full Name)</label>
+                        <input id="fullNameInput" type="text" required placeholder="राहुल शर्मा" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3.5 text-base sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 transition">
+                    </div>
+                    <div>
+                        <label for="emailInput" class="block text-xs text-gray-700 mb-1.5 font-medium">ईमेल एड्रेस (Email Address)</label>
+                        <input id="emailInput" type="email" required placeholder="rahul@example.com" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3.5 text-base sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 transition">
+                    </div>
+                    <div>
+                        <label for="whatsappInput" class="block text-xs text-gray-700 mb-1.5 font-medium">व्हाट्सएप नंबर (WhatsApp Number)</label>
+                        <input id="whatsappInput" type="tel" required placeholder="+91 98765 43210" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3.5 text-base sm:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 transition">
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-base hover:bg-emerald-950 active:scale-[0.99] transition shadow-lg shadow-emerald-900/15 flex items-center justify-center gap-2 mt-4 cursor-pointer">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>RESERVE MY SEAT ON WHATSAPP</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </form>
+
+                <p class="text-[11px] sm:text-xs text-gray-500 text-center mt-5 leading-relaxed">
+                    यह Training regular batches में चलती रहती है। Registration के बाद आपको next upcoming batch की timing और joining link Email और WhatsApp पर share कर दी जाएगी।
+                </p>
+
+                <!-- Feedback modal replacement without alert() -->
+                <div id="formSuccessMessage" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs sm:text-sm text-center leading-relaxed">
+                    🎉 Thank you! आपकी डिटेल्स तैयार हो गई हैं। WhatsApp ओपन हो रहा है... अगर स्वतः न खुले तो नीचे दिए बटन पर क्लिक करें।
+                    <div class="mt-3">
+                        <a id="waDirectLink" href="#" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-800 text-white font-medium text-xs rounded-lg shadow-sm">
+                            <span>Open WhatsApp Now</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-gray-200 px-4 pt-3 safe-bottom-sticky flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+        <div>
+            <span class="text-[10px] text-gray-500 block uppercase tracking-wider font-semibold">3-Day Live Program</span>
+            <div class="flex items-baseline gap-1.5">
+                <span class="text-base font-extrabold text-gray-900">₹4,999</span>
+                <span class="text-[10px] text-emerald-800 font-medium">Regular Batches</span>
+            </div>
+        </div>
+        <a href="#register" class="bg-emerald-900 text-white font-bold px-5 py-2.5 rounded-full text-xs hover:bg-emerald-950 active:scale-95 transition flex items-center gap-1.5 shadow-md shadow-emerald-900/15">
+            <span>RESERVE SEAT</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+    </div>
+
+    <footer class="border-t border-gray-200 py-8 sm:py-10 px-4 sm:px-6 text-gray-500 text-xs text-center max-w-5xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-gray-600 font-medium">
+                © 2026 Digital Product Business Mastery. All rights reserved.
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <a href="#register" class="hover:text-emerald-800 transition">Enrollment</a>
+                <a href="#refund-policy" class="hover:text-emerald-800 transition">Refund Policy</a>
+                <a href="#faq" class="hover:text-emerald-800 transition">FAQs</a>
+                <a href="#problems" class="hover:text-emerald-800 transition">Curriculum</a>
+            </div>
+        </div>
+        <p class="mt-4 text-[10px] text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Note: This educational live training program is designed to develop digital skills and foundational business processes. Individual implementation, time invested, and market conditions determine results.
+        </p>
+    </footer>
+
+    <script>
+        // Initialize Lucide vector icons
+        lucide.createIcons();
+
+        // Mobile drawer menu toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            if (drawer) {
+                drawer.classList.toggle('hidden');
+            }
+        }
+
+        // Smooth FAQ accordion toggle
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('[data-lucide="chevron-down"]');
+            const isOpen = content.classList.contains('open');
+
+            // Close all open FAQ accordions
+            document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+            document.querySelectorAll('[data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
+
+            // Open clicked accordion if it wasn't already open
+            if (!isOpen) {
+                content.classList.add('open');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // WhatsApp redirect handler
+        function handleRegistration() {
+            // YOUR BUSINESS WHATSAPP NUMBER (बिना + या स्पेस के कंट्री कोड के साथ, उदाहरण: 919876543210)
+            const targetWhatsAppNumber = "919876543210"; 
+
+            const fullName = document.getElementById('fullNameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const whatsapp = document.getElementById('whatsappInput').value.trim();
+
+            if (!fullName || !email || !whatsapp) {
+                return;
+            }
+
+            // Clean formatted message
+            const message = `*New Enrollment Request — DPB Mastery*\n\n` +
+                            `👤 *Name:* ${fullName}\n` +
+                            `📧 *Email:* ${email}\n` +
+                            `📱 *WhatsApp:* ${whatsapp}\n` +
+                            `💼 *Program:* Digital Product Business Mastery (3-Day Live Training)\n` +
+                            `💰 *Fee:* ₹4,999\n\n` +
+                            `नमस्ते, मैंने ट्रेनिंग के लिए रजिस्टर किया है। कृपया मुझे आगामी बैच और पेमेंट/जॉइनिंग डिटेल्स शेयर करें।`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${targetWhatsAppNumber}?text=${encodedMessage}`;
+
+            // Show confirmation UI & link
+            const successBox = document.getElementById('formSuccessMessage');
+            const directLink = document.getElementById('waDirectLink');
+
+            if (directLink) {
+                directLink.href = whatsappUrl;
+            }
+
+            if (successBox) {
+                successBox.classList.remove('hidden');
+                successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Redirect user directly to WhatsApp
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 600);
+        }
+    </script>
+</body>
+</html>
